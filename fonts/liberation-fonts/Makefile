@@ -6,11 +6,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=liberation-fonts-ttf
-PKG_VERSION:=2.00.1
+PKG_VERSION:=2.1.1
 PKG_RELEASE:=1
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://fedorahosted.org/releases/l/i/liberation-fonts/
-PKG_MD5SUM:=5c781723a0d9ed6188960defba8e91cf
+PKG_SOURCE_URL:=https://github.com/liberationfonts/liberation-fonts/files/4743886/
+PKG_MD5SUM:=09e90edca92018c0a637f50e2d93a50d
 
 include $(INCLUDE_DIR)/package.mk
 
