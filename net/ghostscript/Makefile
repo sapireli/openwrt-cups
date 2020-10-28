@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ghostscript
-PKG_VERSION:=9.52
+PKG_VERSION:=9.53.3
 PKG_RELEASE:=2
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs952/$(PKG-SOURCE)
-PKG_MD5SUM:=0f6964ab9b83a63b7e373f136243f901
+PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9533/$(PKG-SOURCE)
+PKG_MD5SUM:=807a5c4934a814e8a6cd83eff702f212
 
 PKG_BUILD_DEPENDS:=ghostscript/host
 PKG_INSTALL:=1
@@ -44,7 +44,7 @@ define Build/Configure
 	--without-libidn \
 	--without-x \
 	--without-jbig2dec  \
-	--with-fontpath /usr/share/fonts/ghostscript/fonts/:/usr/share/ghostscript/9.52/Resource/Font/:/usr/share/fonts/default/ghostscript/:/usr/share/fonts/default/TrueType/:/usr/share/fonts/default/Type1:/usr/share/cups/fonts/:/usr/share/fonts/:/usr/share/fonts/ubuntu/:/usr/share/fonts/truetype/liberation/ \
+	--with-fontpath /usr/share/fonts/ghostscript/fonts/:/usr/share/ghostscript/9.53.3/Resource/Font/:/usr/share/fonts/default/ghostscript/:/usr/share/fonts/default/TrueType/:/usr/share/fonts/default/Type1:/usr/share/cups/fonts/:/usr/share/fonts/:/usr/share/fonts/ubuntu/:/usr/share/fonts/truetype/liberation/ \
 	--with-system-libtiff \
 	--with-cups-serverbin="/usr/lib/cups" \
 	--with-cups-serverroot="/etc/cups" \
