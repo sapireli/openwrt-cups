@@ -8,11 +8,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ghostscript
-PKG_VERSION:=9.54.0
-PKG_RELEASE:=3
+PKG_VERSION:=9.55.0
+PKG_RELEASE:=4
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9540/$(PKG-SOURCE)
-PKG_MD5SUM:=5d571792a8eb826c9f618fb69918d9fc
+PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9550/$(PKG-SOURCE)
+PKG_MD5SUM:=4d3e03b54741265dfbcd24c08a1680a7
 
 PKG_BUILD_DEPENDS:=ghostscript/host
 PKG_INSTALL:=1
@@ -43,7 +43,7 @@ define Build/Configure
 	--disable-gtk	\
 	--without-libidn \
 	--without-x \
-	--without-jbig2dec  \
+	--with-jbig2dec \
 	--with-fontpath /usr/share/fonts/ghostscript/fonts/:/usr/share/ghostscript/9.53.3/Resource/Font/:/usr/share/fonts/default/ghostscript/:/usr/share/fonts/default/TrueType/:/usr/share/fonts/default/Type1:/usr/share/cups/fonts/:/usr/share/fonts/:/usr/share/fonts/ubuntu/:/usr/share/fonts/truetype/liberation/ \
 	--with-system-libtiff \
 	--with-cups-serverbin="/usr/lib/cups" \
@@ -66,7 +66,7 @@ define Host/Configure
 	$(call Host/Configure/Default, \
 	--without-x \
 	--without-jasper \
-	--without-jbig2dec \
+	--with-jbig2dec \
 	--without-pdftoraster \
 	--without-libpaper \
 	--disable-gtk	\
