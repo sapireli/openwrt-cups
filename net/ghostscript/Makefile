@@ -8,11 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ghostscript
-PKG_VERSION:=9.56.1
-PKG_RELEASE:=5
+PKG_VERSION:=10.0.0
+PKG_VERSION_LIBDIR:=10.00.0
+PKG_RELEASE:=6
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs9561/$(PKG-SOURCE)
-PKG_MD5SUM:=4f73af1d6f528ee202fba43db0bd8778
+PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs1000/$(PKG-SOURCE)
+PKG_MD5SUM:=4a054b9147170d3810a12e9d60a24727
 
 PKG_BUILD_DEPENDS:=ghostscript/host
 PKG_INSTALL:=1
@@ -98,9 +99,9 @@ define Package/ghostscript/install
 	#	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/lib/cups/filter/* $(1)/usr/lib/cups/filter
 	$(INSTALL_DIR) $(1)/usr/share/cups/model
 	# $(CP) $(PKG_INSTALL_DIR)/usr/share/cups/model/* $(1)/usr/share/cups/model
-	$(INSTALL_DIR) $(1)/usr/share/ghostscript/$(PKG_VERSION)/lib
-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/ghostscript/$(PKG_VERSION)/lib/* \
-		$(1)/usr/share/ghostscript/$(PKG_VERSION)/lib
+	$(INSTALL_DIR) $(1)/usr/share/ghostscript/$(PKG_VERSION_LIBDIR)/lib
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/ghostscript/$(PKG_VERSION_LIBDIR)/lib/* \
+		$(1)/usr/share/ghostscript/$(PKG_VERSION_LIBDIR)/lib
 	$(CP) -r $(PKG_BUILD_DIR)/Resource $(1)/usr/share/ghostscript/$(PKG_VERSION)/
 	$(CP) -r $(PKG_BUILD_DIR)/iccprofiles $(1)/usr/share/ghostscript/$(PKG_VERSION)/
 	# $(INSTALL_DIR) $(1)/usr/share/ghostscript/$(PKG_VERSION)/examples/cjk
