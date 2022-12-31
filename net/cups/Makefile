@@ -8,16 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=cups
-PKG_VERSION:=1.6.3
-PKG_RELEASE:=4
+PKG_VERSION:=2.4.2
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.bz2
-PKG_SOURCE_URL:= \
-	http://ftp.rz.tu-bs.de/pub/mirror/ftp.easysw.com/ftp/pub/cups/$(PKG_VERSION) \
-	ftp://ftp.easysw.com/pub/cups/$(PKG_VERSION) \
-	ftp://ftp3.easysw.com/pub/cups/$(PKG_VERSION) \
-	http://www.cups.org/software/$(PKG_VERSION)
-PKG_MD5SUM:=946a2d8ad1aec6beced312fce18543da
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-source.tar.gz
+PKG_SOURCE_URL:= https://github.com/OpenPrinting/cups/releases/download/v$(PKG_VERSION)/$(PKG_SOURCE)
+PKG_MD5SUM:=be5241e2c165eeb83b58aa32de26fb16
 
 TARGET_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
 
