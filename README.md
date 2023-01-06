@@ -29,7 +29,7 @@ Notably it has:
 - add this line to your `feeds.conf` or `feeds.conf.default`
 
 ```
-src-git printing https://github.com/belphegor-belbel/openwrt-printing-packages.git
+src-git printing https://github.com/logicplace/openwrt-printing-packages.git
 ```
 
 - to compile everything in this feed you should use the script `setup-buildsystem.sh` or some variation of those commands.
