@@ -22,5 +22,4 @@ sleep 1
 /etc/init.d/avahi-daemon restart
 
 sleep 1
-
 /etc/init.d/cupsd restart
