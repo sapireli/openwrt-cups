@@ -41,7 +41,8 @@ jobs:
           mv openwrt-sdk-* sdk
       - name: Update and install feeds
         run: |
-          echo "src-link printing $GITHUB_WORKSPACE" > feeds.conf
+          cp feeds.conf.default feeds.conf
+          echo "src-link printing $GITHUB_WORKSPACE" >> feeds.conf
           ./scripts/feeds update -a
           ./scripts/feeds install -a
         working-directory: sdk
