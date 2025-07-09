@@ -29,8 +29,8 @@ define Build/Compile
 	cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -fPIC -g -c $(TARGET_CFLAGS) -ansi -pedantic jbig.c
 	cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -fPIC -g -c $(TARGET_CFLAGS) -ansi -pedantic jbig85.c
 	cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -fPIC -g -c $(TARGET_CFLAGS) -ansi -pedantic jbig_ar.c
-	cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -shared -o libjbig.so jbig.o jbig_ar.o $(TARGET_LDLAGS)
-	cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -shared -o libjbig85.so jbig85.o jbig_ar.o $(TARGET_LDLAGS)
+       cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -shared -o libjbig.so jbig.o jbig_ar.o $(TARGET_LDFLAGS)
+       cd $(PKG_BUILD_DIR)/libjbig; PATH=$(TARGET_PATH) $(TARGET_CC) -shared -o libjbig85.so jbig85.o jbig_ar.o $(TARGET_LDFLAGS)
 endef
 
 define Build/Install
