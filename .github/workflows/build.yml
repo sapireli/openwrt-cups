@@ -45,6 +45,9 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a -p printing
         working-directory: sdk
+      - name: Configure build
+        run: make defconfig
+        working-directory: sdk
       - name: Compile packages
         run: make package/printing/compile -j$(nproc)
         working-directory: sdk
