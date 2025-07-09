@@ -43,7 +43,7 @@ jobs:
         run: |
           echo "src-link printing $GITHUB_WORKSPACE" > feeds.conf
           ./scripts/feeds update -a
-          ./scripts/feeds install -a -p printing
+          ./scripts/feeds install -a
         working-directory: sdk
       - name: Configure build
         run: make defconfig
