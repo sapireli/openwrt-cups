@@ -1,0 +1,58 @@
+name: Build packages
+
+on:
+  push:
+    branches: ['**']
+    tags: ['**']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: mips_24kc
+            target: ath79
+            subtarget: generic
+            sdk_file: openwrt-sdk-22.03.5-ath79-generic_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+          - arch: arm_cortex-a7
+            target: ipq40xx
+            subtarget: generic
+            sdk_file: openwrt-sdk-22.03.5-ipq40xx-generic_gcc-11.2.0_musl_eabi.Linux-x86_64.tar.xz
+          - arch: aarch64_generic
+            target: armvirt
+            subtarget: '64'
+            sdk_file: openwrt-sdk-22.03.5-armvirt-64_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+          - arch: x86_64
+            target: x86
+            subtarget: '64'
+            sdk_file: openwrt-sdk-22.03.5-x86-64_gcc-11.2.0_musl.Linux-x86_64.tar.xz
+    env:
+      OPENWRT_VERSION: '22.03.5'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Fetch SDK
+        run: |
+          SDK_URL="http://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/${{ matrix.target }}/${{ matrix.subtarget }}/${{ matrix.sdk_file }}"
+          wget "$SDK_URL" -O sdk.tar.xz
+          tar -xf sdk.tar.xz
+          mv openwrt-sdk-* sdk
+      - name: Update and install feeds
+        run: |
+          echo "src-link printing $GITHUB_WORKSPACE" > feeds.conf
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+        working-directory: sdk
+      - name: Configure build
+        run: make defconfig
+        working-directory: sdk
+      - name: Compile packages
+        run: make package/printing/compile -j$(nproc)
+        working-directory: sdk
+      - name: Upload .ipk artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages-${{ matrix.arch }}
+          path: sdk/bin/packages/**/*.ipk
