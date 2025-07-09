@@ -12,7 +12,7 @@ PKG_VERSION:=10.0.0
 PKG_VERSION_LIBDIR:=10.00.0
 PKG_RELEASE:=6
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs1000/$(PKG-SOURCE)
+PKG_SOURCE_URL:=https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs1000/$(PKG_SOURCE)
 PKG_MD5SUM:=4a054b9147170d3810a12e9d60a24727
 
 PKG_BUILD_DEPENDS:=ghostscript/host
