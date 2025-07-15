@@ -30,6 +30,7 @@ jobs:
             sdk_file: openwrt-sdk-22.03.5-x86-64_gcc-11.2.0_musl.Linux-x86_64.tar.xz
     env:
       OPENWRT_VERSION: '22.03.5'
+      SDK_DIR: ${{ runner.temp }}/sdk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -38,22 +39,23 @@ jobs:
           SDK_URL="http://downloads.openwrt.org/releases/${OPENWRT_VERSION}/targets/${{ matrix.target }}/${{ matrix.subtarget }}/${{ matrix.sdk_file }}"
           wget "$SDK_URL" -O sdk.tar.xz
           tar -xf sdk.tar.xz
-          mv openwrt-sdk-* sdk
+          mkdir -p "$SDK_DIR"
+          mv openwrt-sdk-* "$SDK_DIR"
       - name: Update and install feeds
         run: |
           cp feeds.conf.default feeds.conf
           echo "src-link printing $GITHUB_WORKSPACE" >> feeds.conf
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-        working-directory: sdk
+        working-directory: ${{ env.SDK_DIR }}
       - name: Configure build
         run: make defconfig
-        working-directory: sdk
+        working-directory: ${{ env.SDK_DIR }}
       - name: Compile packages
         run: make package/printing/compile -j$(nproc)
-        working-directory: sdk
+        working-directory: ${{ env.SDK_DIR }}
       - name: Upload .ipk artifacts
         uses: actions/upload-artifact@v4
         with:
           name: packages-${{ matrix.arch }}
-          path: sdk/bin/packages/**/*.ipk
+          path: ${{ env.SDK_DIR }}/bin/packages/**/*.ipk
